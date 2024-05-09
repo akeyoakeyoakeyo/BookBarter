@@ -68,6 +68,8 @@ dependencies {
     implementation(libs.androidx.hilt.lifecycle.viewmodel)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.auth.ktx)
 //    kapt(libs.androidx.hilt.compiler)
 //    kapt(libs.hilt.compiler)
     testImplementation(libs.junit)

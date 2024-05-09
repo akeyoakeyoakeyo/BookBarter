@@ -9,6 +9,12 @@ import kotlinx.coroutines.tasks.await
 class BookRepository (private val firestore: FirebaseFirestore){
 
     //Functions to interact with the database and API
+    /**
+     * Saves a book to the Firestore database.
+     *
+     * @param book The book to save.
+     * @throws FirestoreException if an error occurs while saving the book.
+     */
 
     suspend fun saveBook(book: Book){
      try {
@@ -21,7 +27,7 @@ class BookRepository (private val firestore: FirebaseFirestore){
              //Handle any errors
              e.printStackTrace()
             //Optionally, you can throw the exception to handle it in the ViewModel
-                throw e
+                throw FirestoreException("Failed to save book", e)
 
          }
     }

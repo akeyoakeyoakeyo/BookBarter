@@ -48,7 +48,7 @@ fun AddBooksScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally) {
         var context = LocalContext.current
         Text(
-            text = "Add product",
+            text = "Add book",
             fontSize = 30.sp,
             fontFamily = FontFamily.Cursive,
             color = Color.Red,
