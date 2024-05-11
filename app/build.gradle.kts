@@ -2,9 +2,15 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android")
+    id ("kotlin-kapt")
+
 
 
 }
+
+
+
 
 android {
     namespace = "com.akeyo.bookbarter"
@@ -52,6 +58,8 @@ android {
     }
 }
 
+
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -69,9 +77,10 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.database.ktx)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.firebase.auth.ktx)
-//    kapt(libs.androidx.hilt.compiler)
-//    kapt(libs.hilt.compiler)
+    kapt(libs.androidx.hilt.compiler)
+    kapt(libs.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -79,4 +88,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+kapt {
+    correctErrorTypes = true
 }

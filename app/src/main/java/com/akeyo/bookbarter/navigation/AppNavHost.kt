@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.akeyo.bookbarter.ui.theme.screens.auth.LoginScreen
 import com.akeyo.bookbarter.ui.theme.screens.auth.RegisterScreen
 import com.akeyo.bookbarter.ui.theme.screens.book.AddBooksScreen
+import com.akeyo.bookbarter.ui.theme.screens.book.BookDetailScreen
 import com.akeyo.bookbarter.ui.theme.screens.book.BookListScreen
 import com.akeyo.bookbarter.ui.theme.screens.book.EditBooksScreen
 import com.akeyo.bookbarter.ui.theme.screens.home.HomeScreen
@@ -43,6 +44,9 @@ fun AppNavHost (modifier: Modifier = Modifier, navController: NavHostController 
         composable(ROUTE_BOOK_LIST){
             BookListScreen(navController)
         }
+//        composable(ROUTE_BOOK_DETAIL){
+//            BookDetailScreen(navController)
+//        }
 
 
 

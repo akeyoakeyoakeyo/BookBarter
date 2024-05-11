@@ -15,13 +15,16 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
+import javax.inject.Inject
 import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
-class BookViewModel (private val repository: BookRepository):ViewModel(){
+@HiltViewModel
+class BookViewModel @Inject constructor(private val repository: BookRepository):ViewModel(){
 
     //Functions to fetch and manipulate book data
     fun saveBook(book: Book) {

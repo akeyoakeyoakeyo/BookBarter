@@ -1,6 +1,7 @@
 [versions]
 agp = "8.3.0"
 coilCompose = "2.0.0-rc01"
+coreSplashscreen = "1.0.1"
 hiltAndroid = "2.40.5"
 hiltCompiler = "1.2.0"
 hiltLifecycleViewmodel = "1.0.0-alpha03"
@@ -21,6 +22,7 @@ firebaseAuthKtx = "23.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
 androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodel" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
