@@ -4,9 +4,11 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.widget.Toast
 import androidx.navigation.NavHostController
+import com.akeyo.bookbarter.models.User
 import com.akeyo.bookbarter.navigation.ROUTE_HOME
 import com.akeyo.bookbarter.navigation.ROUTE_LOGIN
 import com.akeyo.bookbarter.navigation.ROUTE_REGISTER
+import com.akeyo.bookbarter.navigation.ROUTE_USER_PROFILE
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.auth.FirebaseAuth
 
@@ -34,7 +36,7 @@ class AuthViewModel(var navController: NavHostController, var context: Context){
         }else{
             mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                 if (it.isSuccessful){
-                    val userdata= user(email,pass,mAuth.currentUser!!.uid)
+                    val userdata= User(email,pass,mAuth.currentUser!!.uid)
                     val regRef= FirebaseDatabase.getInstance().getReference()
                         .child("Users/"+mAuth.currentUser!!.uid)
                     regRef.setValue(userdata).addOnCompleteListener {
@@ -61,8 +63,8 @@ class AuthViewModel(var navController: NavHostController, var context: Context){
         mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener {
             progress.dismiss()
             if (it.isSuccessful){
-                Toast.makeText(context,"Succeffully Logged in", Toast.LENGTH_LONG).show()
-                navController.navigate(ROUTE_HOME)
+                Toast.makeText(context,"Successfully Logged in", Toast.LENGTH_LONG).show()
+                navController.navigate(ROUTE_USER_PROFILE)
 //                navController.navigate(ROUTE_REGISTER)TO TAKE YOU TO A DIIFFERNT PAGE
             }else{
                 Toast.makeText(context,"${it.exception!!.message}", Toast.LENGTH_LONG).show()

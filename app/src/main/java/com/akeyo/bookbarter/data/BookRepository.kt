@@ -5,7 +5,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.firestore.FirebaseFirestoreException
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class BookRepository (private val firestore: FirebaseFirestore){
 
     //Functions to interact with the database and API

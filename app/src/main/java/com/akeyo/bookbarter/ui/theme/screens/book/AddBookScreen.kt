@@ -41,6 +41,7 @@ import com.akeyo.bookbarter.data.BookRepository
 import com.akeyo.bookbarter.models.Book
 import com.akeyo.bookbarter.navigation.ROUTE_USER_PROFILE
 import com.akeyo.bookbarter.viewmodel.BookViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 fun AddBooksScreen(navController: NavHostController) {
@@ -90,8 +91,8 @@ fun AddBooksScreen(navController: NavHostController) {
 
         Button(onClick = {
             //-----------WRITE THE SAVE LOGIC HERE---------------//
-            var BookRepository = BookViewModel(navController,context)
-            BookRepository.saveBook(book = Book())
+            var BookRepository = BookViewModel(BookRepository(firestore = FirebaseFirestore))
+            BookRepository.saveBook(book = Book(author = "", condition = "", id = "", description = "", title = "", ownerId = "", imageUrl = "" ))
             navController.navigate(ROUTE_USER_PROFILE)
 
 

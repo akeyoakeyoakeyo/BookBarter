@@ -59,10 +59,12 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             var context = LocalContext.current
-            val title by remember { mutableStateOf("") }
-            val author by remember { mutableStateOf("") }
-            var price by remember { mutableStateOf("") }
+            // Initialize title, author, and price as nullable strings
+            val title by remember { mutableStateOf<String?>(null) }
+            val author by remember { mutableStateOf<String?>(null) }
+            var condition by remember { mutableStateOf<String?>(null) }
 
+            // Fetch data from Firebase and assign values to title, author, and price
             var currentDataRef = FirebaseDatabase.getInstance().getReference()
                 .child("Products/$id")
             currentDataRef.addValueEventListener(object : ValueEventListener {
@@ -70,7 +72,7 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
                     var product = snapshot.getValue(Book::class.java)
                     title = product!!.title
                     author = product!!.author
-                    price = product!!.price
+                    condition = product!!.condition
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -88,9 +90,9 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
                 textDecoration = TextDecoration.Underline
             )
 
-            var bookTitle by remember { mutableStateOf(TextFieldValue(title)) }
-            var bookAuthor by remember { mutableStateOf(TextFieldValue(author)) }
-            var bookCondition by remember { mutableStateOf(TextFieldValue(price)) }
+            var bookTitle by remember { mutableStateOf(TextFieldValue(title?:"")) }
+            var bookAuthor by remember { mutableStateOf(TextFieldValue(author?:"")) }
+            var bookCondition by remember { mutableStateOf(TextFieldValue(condition?:"")) }
 
             OutlinedTextField(
                 value = bookTitle,

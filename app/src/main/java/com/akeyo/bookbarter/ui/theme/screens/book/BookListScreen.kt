@@ -74,13 +74,13 @@ fun BookListScreen(navController: NavHostController) {
 
 
 @Composable
-fun UploadItem(name:String, quantity:String, price:String, imageUrl:String, id:String,
+fun UploadItem(title:String, author:String, description:String, imageUrl:String, id:String,
                navController: NavHostController, productRepository:BookViewModel) {
 
     Column(modifier = Modifier.fillMaxWidth()) {
-        Text(text = name)
-        Text(text = quantity)
-        Text(text = price)
+        Text(text = title)
+        Text(text = author)
+        Text(text = description)
         Image(
             painter = rememberAsyncImagePainter(imageUrl),
             contentDescription = null,

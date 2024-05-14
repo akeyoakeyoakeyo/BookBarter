@@ -79,7 +79,8 @@ fun Detailprev() {
         author = "Sample Author",
         condition = "Sample Condition",
         imageUrl = "Sample url",
-        ownerId = "1"
+        ownerId = "1",
+        description = "Sample description"
         // You can add other properties as well
     )
 

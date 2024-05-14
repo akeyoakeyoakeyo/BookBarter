@@ -33,22 +33,25 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.akeyo.bookbarter.R
-import com.akeyo.bookbarter.navigation.ROUTE_LOGIN
 import com.akeyo.bookbarter.navigation.ROUTE_REGISTER
 import com.akeyo.bookbarter.navigation.ROUTE_USER_PROFILE
+import com.akeyo.bookbarter.viewmodel.AuthViewModel
+import dagger.hilt.android.HiltAndroidApp
 
 @Composable
-fun LoginScreen(navController: NavHostController) {
-    val username by remember {
+fun LoginScreen(navController: NavHostController, authViewModel: AuthViewModel = ViewModel())  {
+    var username by remember {
         mutableStateOf("")
     }
     var password by remember {
         mutableStateOf("")
     }
+
 
 
 
@@ -177,7 +180,10 @@ fun LoginScreen(navController: NavHostController) {
                 )
             }
 
-            Button(onClick = { navController.navigate(ROUTE_USER_PROFILE) },
+            Button(onClick = {
+                             authViewModel.login(email = "", pass = "")
+//                navController.navigate(ROUTE_USER_PROFILE)
+                             },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 shape = RoundedCornerShape(30.dp),
                 modifier = Modifier

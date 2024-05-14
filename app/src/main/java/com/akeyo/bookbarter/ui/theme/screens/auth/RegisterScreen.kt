@@ -41,9 +41,19 @@ import androidx.navigation.compose.rememberNavController
 import com.akeyo.bookbarter.R
 import com.akeyo.bookbarter.navigation.ROUTE_LOGIN
 import com.akeyo.bookbarter.navigation.ROUTE_USER_PROFILE
+import com.akeyo.bookbarter.viewmodel.AuthViewModel
 
 @Composable
 fun RegisterScreen(navController:NavHostController) {
+    var username by remember {
+        mutableStateOf("")
+    }
+    var password by remember {
+        mutableStateOf("")
+    }
+    var email by remember {
+        mutableStateOf("")
+    }
 
     Box (modifier = Modifier.fillMaxSize()) {
         Image(
@@ -130,7 +140,7 @@ fun RegisterScreen(navController:NavHostController) {
                 modifier = Modifier
                     .width(350.dp)
                     .padding(vertical = 10.dp),
-            keyboardActions = KeyboardOptions(imeAction = ImeAction.Next)
+//            keyboardActions = KeyboardOptions(imeAction = ImeAction.Next)
             )
 
             OutlinedTextField(value = password,
@@ -145,12 +155,14 @@ fun RegisterScreen(navController:NavHostController) {
                 modifier = Modifier
                     .width(350.dp)
                     .padding(vertical = 10.dp),
-            keyboardActions = KeyboardOptions(imeAction = ImeAction.Next)
+//            keyboardActions = KeyboardOptions(imeAction = ImeAction.Next)
             )
 
             Spacer(modifier = Modifier.height(60.dp))
 
-            Button(onClick = { navController.navigate(ROUTE_USER_PROFILE) },
+            Button(
+                {AuthViewModel.login()},
+//                onClick = { navController.navigate(ROUTE_USER_PROFILE) },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 shape = RoundedCornerShape(30.dp),
                 modifier = Modifier

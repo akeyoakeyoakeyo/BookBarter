@@ -61,7 +61,7 @@ fun UserProfileScreen(navController:NavHostController) {
                     Row {
                         Column(modifier = Modifier
                             .weight(1f)) {
-                            Text(text = "Course")
+                            Text(text = "Book")
                             Text(text = name, style = MaterialTheme.typography.headlineMedium.copy(
                                 fontWeight = FontWeight.ExtraBold
                             ))
