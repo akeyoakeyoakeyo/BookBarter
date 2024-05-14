@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestoreException
 import dagger.hilt.android.HiltAndroidApp
 
-@HiltAndroidApp
+//@HiltAndroidApp
 class BookRepository (private val firestore: FirebaseFirestore){
 
     //Functions to interact with the database and API
@@ -32,7 +32,7 @@ class BookRepository (private val firestore: FirebaseFirestore){
              //Handle any errors
              e.printStackTrace()
             //Optionally, you can throw the exception to handle it in the ViewModel
-                throw FirestoreException("Failed to save book", e)
+                throw  e
 
          }
     }

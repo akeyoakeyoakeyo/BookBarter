@@ -97,6 +97,7 @@ fun UserProfileScreen(navController:NavHostController) {
             }
 
         }
+        RecyclerView()
 
 
 
@@ -108,5 +109,6 @@ fun UserProfileScreen(navController:NavHostController) {
 @Composable
 fun Userprev() {
     UserProfileScreen(rememberNavController())
+
 
 }

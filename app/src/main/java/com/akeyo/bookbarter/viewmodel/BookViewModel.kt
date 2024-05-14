@@ -123,7 +123,7 @@ class BookViewModel @Inject constructor(private val repository: BookRepository):
         }
     }
 
-    private suspend fun
+    private fun
             saveImageToFile(imageData: ByteArray): String {
         try {
 

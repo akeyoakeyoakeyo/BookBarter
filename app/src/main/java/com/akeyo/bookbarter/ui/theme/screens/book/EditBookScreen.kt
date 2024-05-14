@@ -60,8 +60,8 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
         ) {
             var context = LocalContext.current
             // Initialize title, author, and price as nullable strings
-            val title by remember { mutableStateOf<String?>(null) }
-            val author by remember { mutableStateOf<String?>(null) }
+            var title by remember { mutableStateOf<String?>(null) }
+            var author by remember { mutableStateOf<String?>(null) }
             var condition by remember { mutableStateOf<String?>(null) }
 
             // Fetch data from Firebase and assign values to title, author, and price
@@ -71,8 +71,8 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     var product = snapshot.getValue(Book::class.java)
                     title = product!!.title
-                    author = product!!.author
-                    condition = product!!.condition
+                    author = product.author
+                    condition = product.condition
                 }
 
                 override fun onCancelled(error: DatabaseError) {

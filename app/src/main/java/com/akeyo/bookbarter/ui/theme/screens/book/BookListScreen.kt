@@ -27,6 +27,7 @@ import com.akeyo.bookbarter.data.BookRepository
 import com.akeyo.bookbarter.models.Book
 import com.akeyo.bookbarter.navigation.ROUTE_EDIT_BOOK
 import com.akeyo.bookbarter.viewmodel.BookViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 
@@ -35,7 +36,7 @@ fun BookListScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally) {
 
         var context = LocalContext.current
-        var bookRepository = BookViewModel(navController, context)
+        var bookRepository = BookViewModel(BookRepository(FirebaseFirestore))
 
         val emptyUploadState = remember { mutableStateOf(Book("","","","","")) }
         var emptyUploadsListState = remember { mutableStateListOf<Book>() }
@@ -55,16 +56,18 @@ fun BookListScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            LazyColumn(){
+            LazyColumn {
                 items(uploads){
                     UploadItem(
-                        title = it.title,
-                        author = it.author,
-                        description = it.description,
-                        imageUrl = it.imageUrl,
-                        id = it.id,
+                        title = "",
+                        author = "",
+                        description = "",
+                        imageUrl = "",
+                        id = "",
                         navController = navController,
-                        BookRepository = BookRepository
+                        BookRepository = BookViewModel(BookRepository(FirebaseFirestore))
+
+
                     )
                 }
             }
@@ -75,7 +78,7 @@ fun BookListScreen(navController: NavHostController) {
 
 @Composable
 fun UploadItem(title:String, author:String, description:String, imageUrl:String, id:String,
-               navController: NavHostController, productRepository:BookViewModel) {
+               navController: NavHostController, BookRepository:BookViewModel) {
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(text = title)
