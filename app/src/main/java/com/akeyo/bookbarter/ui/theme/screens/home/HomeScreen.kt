@@ -46,7 +46,7 @@ fun HomeScreen(navController:NavHostController) {
 
         )   {
 
-            Text(text = "WELCOME TO \n    BOOKBARTER",
+            Text(text = "WELCOME TO \n \n    BOOKBARTER",
                 fontSize = 35.sp,
                 fontFamily = FontFamily.SansSerif,
                 color = Color.White

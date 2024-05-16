@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.akeyo.bookbarter.R
 
@@ -63,15 +64,17 @@ fun UserProfileScreen(navController:NavHostController) {
                             .weight(1f)) {
                             Text(text = "Book")
                             Text(text = name, style = MaterialTheme.typography.headlineMedium.copy(
-                                fontWeight = FontWeight.ExtraBold
+                                fontWeight = FontWeight.ExtraBold,
                             ))
                         }
                         OutlinedButton(onClick = { expanded.value=!expanded.value }) {
-                            Text(if (expanded.value)"Show less" else "Show more")
+                            Text(if (expanded.value)"Show less" else "Show more", color = Color.Cyan)
 
                         }
                         OutlinedButton(onClick = {  }) {
-                            Text(text = "Request")
+                            Text(text = "Request", color = Color.Cyan
+
+                                )
 
                         }
                     }

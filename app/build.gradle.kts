@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
-    id("com.google.dagger.hilt.android")
-    id ("kotlin-kapt")
+//    id("com.google.dagger.hilt.android")
+//    id ("kotlin-kapt")
 
 
 
@@ -73,15 +73,11 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.lifecycle.viewmodel)
     implementation(libs.firebase.storage)
-    implementation(libs.firebase.firestore.ktx)
+//    implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.database.ktx)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.firebase.auth.ktx)
-    kapt(libs.androidx.hilt.compiler)
-    kapt(libs.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -91,6 +87,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 }
 
-kapt {
-    correctErrorTypes = true
-}
+//kapt {
+//    correctErrorTypes = true
+//}

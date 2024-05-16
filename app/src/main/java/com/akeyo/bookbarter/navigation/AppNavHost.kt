@@ -44,6 +44,9 @@ fun AppNavHost (modifier: Modifier = Modifier, navController: NavHostController 
 //        composable(ROUTE_BOOK_DETAIL){
 //            BookDetailScreen(navController)
 //        }
+        composable(ROUTE_VIEW_UPLOAD){
+            BookListScreen(navController)
+        }
 
 
 

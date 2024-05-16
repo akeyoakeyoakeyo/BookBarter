@@ -39,6 +39,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.akeyo.bookbarter.R
+import com.akeyo.bookbarter.navigation.ROUTE_HOME
 import com.akeyo.bookbarter.navigation.ROUTE_LOGIN
 import com.akeyo.bookbarter.navigation.ROUTE_USER_PROFILE
 import com.akeyo.bookbarter.viewmodel.AuthViewModel
@@ -160,15 +161,18 @@ fun RegisterScreen(navController:NavHostController) {
 
             Spacer(modifier = Modifier.height(60.dp))
 
-            Button(
-                {AuthViewModel.login()},
-//                onClick = { navController.navigate(ROUTE_USER_PROFILE) },
+            Button(onClick = {
+//                val mysignup = AuthViewModel(navController, context )
+//                    mysignup.signup("", "", "")
+                    navController.navigate(ROUTE_USER_PROFILE)
+
+                             },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 shape = RoundedCornerShape(30.dp),
                 modifier = Modifier
                     .width(350.dp)
             ) {
-                Text(text = "Login",
+                Text(text = "Register",
                     fontSize = 28.sp,
                     color = Color.Magenta,
                     modifier = Modifier

@@ -31,12 +31,11 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.akeyo.akeyoxfirebase.data.bookviewmodel
 import com.akeyo.bookbarter.R
 import com.akeyo.bookbarter.models.Book
-import com.akeyo.bookbarter.viewmodel.BookViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -62,7 +61,8 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
             // Initialize title, author, and price as nullable strings
             var title by remember { mutableStateOf<String?>(null) }
             var author by remember { mutableStateOf<String?>(null) }
-            var condition by remember { mutableStateOf<String?>(null) }
+            var description by remember { mutableStateOf<String?>(null) }
+//            var conditon by remember { mutableStateOf<String?>(null) }
 
             // Fetch data from Firebase and assign values to title, author, and price
             var currentDataRef = FirebaseDatabase.getInstance().getReference()
@@ -72,7 +72,8 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
                     var product = snapshot.getValue(Book::class.java)
                     title = product!!.title
                     author = product.author
-                    condition = product.condition
+                    description = product.description
+//                    conditon = product.condition
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -81,7 +82,7 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
             })
 
             Text(
-                text = "Add book",
+                text = "Edit book",
                 fontSize = 30.sp,
                 fontFamily = FontFamily.Cursive,
                 color = Color.Red,
@@ -90,9 +91,12 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
                 textDecoration = TextDecoration.Underline
             )
 
-            var bookTitle by remember { mutableStateOf(TextFieldValue(title?:"")) }
-            var bookAuthor by remember { mutableStateOf(TextFieldValue(author?:"")) }
-            var bookCondition by remember { mutableStateOf(TextFieldValue(condition?:"")) }
+            var bookTitle by remember { mutableStateOf(TextFieldValue("")) }
+            var bookAuthor by remember { mutableStateOf(TextFieldValue("")) }
+            var bookDescription by remember { mutableStateOf(TextFieldValue("")) }
+            var bookCondition by remember { mutableStateOf(TextFieldValue("")) }
+            var imageUrl by remember { mutableStateOf(TextFieldValue("")) }
+            var ownerid by remember { mutableStateOf(TextFieldValue("")) }
 
             OutlinedTextField(
                 value = bookTitle,
@@ -112,6 +116,18 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
+
+
+            OutlinedTextField(
+                value = bookDescription,
+                onValueChange = { bookDescription = it },
+                label = { Text(text = "Book Description *") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+            )
+
+
+            Spacer(modifier = Modifier.height(20.dp))
+
             OutlinedTextField(
                 value = bookCondition,
                 onValueChange = { bookCondition = it },
@@ -123,11 +139,11 @@ fun EditBooksScreen(navController: NavHostController, id:String) {
 
             Button(onClick = {
                 //-----------WRITE THE UPDATE LOGIC HERE---------------//
-                var BookRepository = BookViewModel(navController, context)
+                var BookRepository = bookviewmodel(navController, context)
+
                 BookRepository.updateBook(
-                    bookTitle.text.trim(), bookAuthor.text.trim(),
-                    bookCondition.text.trim(), id
-                )
+                    bookTitle.text.trim(), bookAuthor.text.trim(), bookDescription.text.trim(),
+                    bookCondition.text.trim(), imageUrl.text.trim(), id, ownerid.text.trim())
 
 
             }) {
